@@ -25,19 +25,23 @@ Query all employees/ query employee by id
     b. com.luke.hrms.dao.impl backend:implementation of accessing database<br>
     c. com.luke.hrms.service backend:interface for functions <br>
     d. com.luke.hrms.serviceImpl backend:implementation of functions <br>
-    e. com.luke.hrms.test frontend<br>
-    f. com.luke.hrms.util frontend:class DBUtil for code reusing<br>
-
+    e. com.luke.hrms.test frontend: main() program<br>
+    f. com.luke.hrms.util back:class DBUtil for connecting database(oracle)<br>
+    g. com.luke.hrms.pojo class for employee
 4. Create class Employee
-5. 
-
+5. create interface class and implementation class<br>
+    a. com.luke.hrms.pojo.Emp :employee class<br>
+    b. com.luke.hrms.util.JdbcUtil : connect database<br>
+    c. com.luke.hrms.dao.impl.EmpDaoImpl :backend service<br>
+    d. com.luke.hrms.serviceImpl.EmpServiceImpl :business tier<br>
+    e. com.luke.hrms.test.Test :front end service to terminal<br>
 ##4. Function lists
 1. Query all employees
 2. Query employee by id
 3. Add employee
 4. update employee's name
 5. delete employee
-6
+6. exit
 
 ##5. Database design for table emp
 EMPNO ENAME JOB MGR HIREDATE SAL COMM DEPTNO
@@ -56,4 +60,4 @@ delete from emp where empno=?
 
 
 ##
-db.properties-->JdbcUtil-->EmpDaoImpl-->Test
+db.properties-->JdbcUtil-->EmpDaoImpl--->EmpServiceImpl-->Test
