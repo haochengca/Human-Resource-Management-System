@@ -23,9 +23,10 @@ Query all employees/ query employee by id
 3. Create packages:<br>
     a. com.luke.hrms.dao backend:interface for database<br>
     b. com.luke.hrms.dao.impl backend:implementation of accessing database<br>
-    c. com.luke.hrms.entity backend:class employee<br>
-    d. com.luke.hrms.test frontend<br>
-    e. com.luke.hrms.util frontend:class DBUtil for code reusing<br>
+    c. com.luke.hrms.service backend:interface for functions <br>
+    d. com.luke.hrms.serviceImpl backend:implementation of functions <br>
+    e. com.luke.hrms.test frontend<br>
+    f. com.luke.hrms.util frontend:class DBUtil for code reusing<br>
 
 4. Create class Employee
 5. 
@@ -52,3 +53,7 @@ insert into emp values(?,?,?,?,?,?,?,?)<>br
 update emp set ename=? where empno=?<br>
 5.delete employee:<br>
 delete from emp where empno=?   
+
+
+##
+db.properties-->JdbcUtil-->EmpDaoImpl-->Test

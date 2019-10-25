@@ -8,6 +8,7 @@
 
 package com.luke.hrms.dao.impl;
 
+import com.luke.hrms.dao.EmpDao;
 import com.luke.hrms.pojo.Emp;
 import com.luke.hrms.util.JdbcUtil;
 import com.sun.org.apache.bcel.internal.generic.ANEWARRAY;
@@ -16,10 +17,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class EmpDaoImpl {
+public class EmpDaoImpl implements EmpDao {
     //Query all employees
     public ArrayList<Emp> selAllEmpInfo(){
         //declare Arraylist object
@@ -75,6 +78,7 @@ public class EmpDaoImpl {
             conn= JdbcUtil.getConnection();
             //create sql statement
             String sql="select * from emp where empno=?";
+            ps=JdbcUtil.getPreparedStatement(sql,conn);
             ps.setInt(1,empno);
             //assign value to placeholder
             rs=ps.executeQuery();
@@ -82,8 +86,8 @@ public class EmpDaoImpl {
                 p=new Emp();
                 p.setEmpno(rs.getInt("empno"));
                 p.setEname(rs.getString("ename"));
-                p.setJob(rs.getNString("job"));
-                p.setMgr(rs.getNString("mgr"));
+                p.setJob(rs.getString("job"));
+                p.setMgr(rs.getString("mgr"));
                 p.setDate(rs.getDate("hiredate"));
                 p.setSal(rs.getDouble("sal"));
                 p.setComm(rs.getDouble("comm"));
@@ -104,7 +108,7 @@ public class EmpDaoImpl {
     public int insEmpInfo(int empno, String ename, String job, int mgr, Date hiredate, double sal, double comm, int deptno){
 
         //create sql statement
-        String sql="insert into emp value(?,?,?,?,?,?,?,?)";
+        String sql="insert into emp values(?,?,?,?,?,?,?,?)";
         //transform the date type to java.sql.date
 
         java.sql.Date d=new java.sql.Date(hiredate.getTime());
@@ -129,7 +133,17 @@ public class EmpDaoImpl {
         return JdbcUtil.executeDML("delete from emp where empno=?",empno);
     }
 
-
+    /*public static void main(String[] args) {
+        EmpDaoImpl ed=new EmpDaoImpl();
+        Date hiredate= null;
+        try {
+            hiredate = new SimpleDateFormat("YYYY-MM-DD").parse("2014-1-1");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        int i=ed.insEmpInfo(666,"jake","clerk",7566, hiredate,1500,1000,30);
+        System.out.printf("i="+i);
+    }*/
 
 }
 
