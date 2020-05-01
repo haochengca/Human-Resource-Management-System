@@ -64,3 +64,6 @@ db.properties-->JdbcUtil-->EmpDaoImpl--->EmpServiceImpl-->Test
 
 ##
 Notes From lookk
+
+##
+Notes From Haocheng
