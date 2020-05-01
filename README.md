@@ -61,3 +61,6 @@ delete from emp where empno=?
 
 ##
 db.properties-->JdbcUtil-->EmpDaoImpl--->EmpServiceImpl-->Test
+
+##
+Notes From lookk
